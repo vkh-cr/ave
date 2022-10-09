@@ -1,0 +1,50 @@
+networks:
+  stack_network:
+    external: false
+    name: stack_network
+
+# TODO: volumes: data/log persistency
+services:
+  db:
+    image: postgres:14.5
+    environment:
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: av
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    healthcheck:
+      interval: 20s
+      retries: 2
+      test:
+      - CMD-SHELL
+      - pg_isready
+      timeout: 5s
+    user: postgres
+    networks:
+      stack_network:
+        aliases:
+          - backend
+
+  backend:
+    image: av-backend:0.0.1
+    environment:
+      DJANGO_SETTINGS_MODULE: av_backend.settings.production
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/av
+      SECRET_KEY: cbasdyt792387523B23GHF366
+      ALLOWED_HOSTS: "*"
+      GOOGLE_APIS_CREDENTIALS_FILE: "/app/secret/google-credentials.json"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - /Users/btx/Development/av-backend/deployment/av_backend/config/secret/av-app-365013-07331cd31b9f.json:/app/secret/google-credentials.json
+    networks:
+      stack_network:
+        aliases:
+          - backend
+    ports:
+      - published: 80
+        target: 8000
+
+
+version: '3.9'

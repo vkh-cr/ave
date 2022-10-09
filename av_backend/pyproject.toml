@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "av_backend"
 version = "0.0.1-dev"
 dependencies = [
-    "psycopg2-binary==2.9.3",
+    "psycopg2==2.9.3",
     # Wagtail
     "wagtail>=4.0,<4.1",
     # Django
@@ -14,6 +14,7 @@ dependencies = [
     "django-environ==0.9.0",
     "django-model-utils==4.2.0",
     "django-extensions==3.2.1",
+    "whitenoise[brotli]",
     # Google APIs
     "google-api-python-client==2.64.0",
     "google-auth-httplib2==0.1.0",
@@ -25,11 +26,21 @@ dev = [
     "jupyter",
 ]
 test = [
-    "pytest-django==4.5.2",
+    "pytest-django",
 ]
 
-[project.scripts]
-"manage.py" = "av_backend.manage:main"
+#[tool.taskipy.tasks]
+#"manage" = "python manage.py"
+#"pip-compile-prod" = "pip-compile -o requirement.txt pyproject.toml"
+#"pip-compile-dev" = "pip-compile --extra dev -o requirement.txt pyproject.toml"
+#"pip-compile-test" = "pip-compile --extra test -o requirement.txt pyproject.toml"
+
+[tool.poe.tasks]
+manage = "python manage.py"
+pip-compile-prod = "pip-compile -o requirements.txt pyproject.toml"
+pip-compile-dev = "pip-compile --extra dev -o requirements.dev.txt pyproject.toml"
+pip-compile-test = "pip-compile --extra test -o requirements.test.txt pyproject.toml"
+
 
 [tool.setuptools]
 py-modules = [

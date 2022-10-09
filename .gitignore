@@ -181,4 +181,7 @@ cython_debug/
 # Custom
 /av_backend/av_backend/settings/local.py
 /av_backend/media/
+/av_backend/static/
 /av_backend/secret/
+
+/deployment/av_backend/config/secret/

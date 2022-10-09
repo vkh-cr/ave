@@ -17,8 +17,8 @@ SCOPES = [
 
 
 class TeamImportService:
-    SECRET_FILE = settings.BASE_DIR / "secret/av-app-365013-07331cd31b9f.json"
-    DOCUMENT_ID = "1QBswvLoixphBUoNeSOT4BD9u_jfAGMxCex5-X1Q95gM"
+    SECRET_FILE = settings.GOOGLE_APIS_CREDENTIALS_FILE
+    DOCUMENT_ID = settings.AV_TEAM_SHEET_ID
 
     RANGE = "List 1!C3:I50"
     PEOPLE_FIELDS = (
@@ -41,6 +41,9 @@ class TeamImportService:
 
     def take_first(self, values, none_value=""):
         return values[0] if values else none_value
+
+    def mk_row_data(self, row, fields):
+        return dict(zip(fields, (row + ([None] * (len(fields) - len(row))))))
 
     def retrieve_sheet_data(self, sheet_id, sheet_range):
         credentials = service_account.Credentials.from_service_account_file(
@@ -67,9 +70,7 @@ class TeamImportService:
 
     def _sections(self, data, fields=SECTIONS_FIELDS):
         for row in data:
-            # Extend row result with trailing None values
-            row = row + ([None] * (len(fields) - len(row)))
-            row_data = dict(zip(fields, row))
+            row_data = self.mk_row_data(row, fields)
 
             if not row_data.get("email"):
                 continue
@@ -81,9 +82,7 @@ class TeamImportService:
 
     def _persons(self, data, fields=PEOPLE_FIELDS):
         for row in data:
-            # Extend row result with trailing None values
-            row = row + ([None] * (len(fields) - len(row)))
-            row_data = dict(zip(fields, row))
+            row_data = self.mk_row_data(row, fields)
 
             if not row_data.get("code"):
                 continue
@@ -132,7 +131,7 @@ class TeamImportService:
                         name=p["name"].strip(),
                         e_mail=self.take_first(p["email"]).strip(),
                         phone=self.take_first(p["phone"]).strip(),
-                        city=p["city"] or "",
+                        city=(p["city"] or "").strip(),
                     ),
                 )
 
