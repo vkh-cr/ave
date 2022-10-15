@@ -11,12 +11,12 @@ defaults:
  run:
   working-directory: ./av_backend
   
-env:
-  # FIXME: GitHub registry auth does not work
-  # REGISTRY: ghcr.io
-  # IMAGE_NAME: vhk-cr/av-backend
-  # IMAGE_NAME: ${{ github.repository }}
-  # IMAGE_TAG: ${{ github.sha }}
+#env:
+#  FIXME: GitHub registry auth does not work
+#  REGISTRY: ghcr.io
+#  # IMAGE_NAME: vhk-cr/av-backend
+#  # IMAGE_NAME: ${{ github.repository }}
+#  # IMAGE_TAG: ${{ github.sha }}
 
 jobs:
   build:
