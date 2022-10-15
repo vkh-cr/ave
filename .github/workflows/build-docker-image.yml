@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      env:
-        GOOGLE_APIS_CREDENTIALS_FILE: /dev/null
       run: docker build . --file Dockerfile --tag av-backend:test-01
       #run: docker build . --file av_backend/Dockerfile --tag av-backend:$(date +%s)
+    - name: Push the image to repo
+      run: docker push ghcr.io/vhk-cr/av-backend:test-01
