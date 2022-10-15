@@ -57,9 +57,9 @@ services:
       stack_network:
         aliases:
           - backend
-    ports:
-      - published: 8000
-        target: 8000
+    #ports:
+    #  - published: 8000
+    #    target: 8000
 
   proxy:
     image: nginx

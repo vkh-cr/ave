@@ -29,6 +29,7 @@ WORKDIR /app
 RUN chown ${USER}:${USER} /app
 
 COPY --chown=${USER}:${USER} . .
+RUN mkdir "media"
 
 # User to run the build commands below and the server itself.
 USER ${USER}
