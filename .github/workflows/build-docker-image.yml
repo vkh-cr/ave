@@ -5,6 +5,10 @@ on:
     branches: [ "main" ]
     tags:        
       - v*
+      
+defaults:
+ run:
+  working-directory: ./av_backend
 
 jobs:
   build:
@@ -13,4 +17,4 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       #run: docker build . --file av_backend/Dockerfile --tag av-backend:$(date +%s)
-      run: docker build . --file av_backend/Dockerfile --tag av-backend:test-01
+      run: docker build . --file Dockerfile --tag av-backend:test-01
