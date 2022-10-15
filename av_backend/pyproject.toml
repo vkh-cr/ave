@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "av_backend"
 version = "0.0.1-dev"
 dependencies = [
-    "psycopg2==2.9.3",
+    "psycopg2==2.9.4",
     # Wagtail
     "wagtail>=4.0,<4.1",
     # Django

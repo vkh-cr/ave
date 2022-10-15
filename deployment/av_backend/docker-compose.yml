@@ -51,7 +51,8 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - /Users/btx/Development/av-backend/deployment/av_backend/config/secret/av-app-365013-07331cd31b9f.json:/app/secret/google-credentials.json
+      - ./config/secret/av-app-365013-07331cd31b9f.json:/app/secret/google-credentials.json
+      - media_files:/app/media:rw
     networks:
       stack_network:
         aliases:
@@ -60,15 +61,18 @@ services:
       - published: 8000
         target: 8000
 
-#  proxy:
-#    image: nginx
-#    depends_on:
-#      backend:
-#        condition: service_started
-#    networks:
-#      stack_network:
-#        aliases:
-#          - proxy
-#    ports:
-#      - published: 8000
-#        target: 80
+  proxy:
+    image: nginx
+    depends_on:
+      backend:
+        condition: service_started
+    volumes:
+      - media_files:/usr/share/nginx/html/media:rw
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:r
+    networks:
+      stack_network:
+        aliases:
+          - proxy
+    ports:
+      - published: 8000
+        target: 80

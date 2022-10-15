@@ -28,6 +28,8 @@ beautifulsoup4==4.11.1
     #   wagtail
 bleach==5.0.1
     # via nbconvert
+brotli==1.0.9
+    # via whitenoise
 cachetools==5.2.0
     # via google-auth
 certifi==2022.9.24
@@ -218,7 +220,7 @@ protobuf==4.21.7
     #   googleapis-common-protos
 psutil==5.9.2
     # via ipykernel
-psycopg2-binary==2.9.3
+psycopg2==2.9.4
     # via av-backend (pyproject.toml)
 ptyprocess==0.7.0
     # via
@@ -329,6 +331,8 @@ webencodings==0.5.1
     #   bleach
     #   html5lib
     #   tinycss2
+whitenoise[brotli]==6.2.0
+    # via av-backend (pyproject.toml)
 widgetsnbextension==4.0.3
     # via ipywidgets
 willow==1.4.1
