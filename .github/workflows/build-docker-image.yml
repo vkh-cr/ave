@@ -16,5 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      #run: docker build . --file av_backend/Dockerfile --tag av-backend:$(date +%s)
+      env:
+        GOOGLE_APIS_CREDENTIALS_FILE: /dev/null
       run: docker build . --file Dockerfile --tag av-backend:test-01
+      #run: docker build . --file av_backend/Dockerfile --tag av-backend:$(date +%s)
