@@ -1,8 +1,16 @@
+version: '3.9'
+
 networks:
   stack_network:
-    external: false
+    driver: bridge
     name: stack_network
 
+volumes:
+  db_data: {}
+  static_files: {}
+  media_files: {}
+
+# TODO: nginx as a proxy and for static/media
 # TODO: volumes: data/log persistency
 services:
   db:
@@ -23,10 +31,16 @@ services:
     networks:
       stack_network:
         aliases:
-          - backend
+          - db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  #debug:
+  #  image: ubuntu:latest
+  #  command: tail -F backend
 
   backend:
-    image: av-backend:0.0.1
+    image: zdeneksoftic/av-backend:v0.0.1-dev2
     environment:
       DJANGO_SETTINGS_MODULE: av_backend.settings.production
       DATABASE_URL: postgresql://postgres:postgres@db:5432/av
@@ -43,8 +57,18 @@ services:
         aliases:
           - backend
     ports:
-      - published: 80
+      - published: 8000
         target: 8000
 
-
-version: '3.9'
+#  proxy:
+#    image: nginx
+#    depends_on:
+#      backend:
+#        condition: service_started
+#    networks:
+#      stack_network:
+#        aliases:
+#          - proxy
+#    ports:
+#      - published: 8000
+#        target: 80
