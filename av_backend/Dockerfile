@@ -1,6 +1,7 @@
 FROM python:3.10.7-slim-bullseye
 
-ENV USER=av
+#ENV USER=av
+ENV USER=root
 
 RUN useradd ${USER}
 
