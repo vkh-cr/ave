@@ -1,9 +1,8 @@
 FROM python:3.10.7-slim-bullseye
 
-#ENV USER=av
 ENV USER=root
-
-RUN useradd ${USER}
+#ENV USER=av
+#RUN useradd ${USER}
 
 ENV PYTHONUNBUFFERED=1 \
     PORT=8000
