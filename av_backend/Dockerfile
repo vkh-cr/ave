@@ -26,10 +26,11 @@ RUN pip install -r /requirements.txt
 # Use /app folder as a directory where the source code is stored.
 WORKDIR /app
 
+RUN mkdir "media"
+
 RUN chown ${USER}:${USER} /app
 
 COPY --chown=${USER}:${USER} . .
-RUN mkdir "media"
 
 # User to run the build commands below and the server itself.
 USER ${USER}
