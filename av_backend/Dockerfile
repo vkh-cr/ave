@@ -39,5 +39,5 @@ ENV GOOGLE_APIS_CREDENTIALS_FILE=/dev/null
 ENV AV_TEAM_SHEET_ID=None
 RUN python manage.py collectstatic --noinput --clear
 
-# TODO: entrypoint + proper gunicorn setup
-CMD set -xe; python manage.py migrate --noinput; gunicorn av_backend.wsgi:application
+RUN chmod +x entrypoint.sh
+ENTRYPOINT "./entrypoint.sh"
