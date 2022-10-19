@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load menu_tags %}
+{% load wagtailcore_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -8,14 +10,25 @@
 {% comment %}
 Delete the line below if you're just getting started and want to remove the welcome screen!
 {% endcomment %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
 <link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-{% include 'home/welcome_page.html' %}
+{#{% include 'home/welcome_page.html' %}#}
+
+<header class="header">
+<nav>
+{#{% wagtail_site as current_site %}#}
+{#{{ current_site.site_name }}#}
+{#{% main_menu max_levels=3 template="menus/custom_main_menu.html" sub_menu_template="menus/custom_sub_menu.html" %}#}
+{% main_menu max_levels=1 %}
+</nav>
+</header>
+
+<main class="main">
+    <h1>{{ page.title }}</h1>
+</main>
 
 {% endblock content %}
