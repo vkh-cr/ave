@@ -1,4 +1,5 @@
 from wagtail import hooks
+from wagtail.admin.panels import InlinePanel
 from wagtail.admin.search import SearchArea
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin,
@@ -26,6 +27,7 @@ class TeamSectionAdmin(ModelAdmin):
     # list_filter = ("author",)
     search_fields = ("name", "e_mail")
     ordering = ("name",)
+    inspect_view_enabled = True
 
 
 class PersonAdmin(ModelAdmin):
@@ -43,6 +45,7 @@ class PersonAdmin(ModelAdmin):
     list_display = ("name", "code", "e_mail", "phone", "city")
     search_fields = ("name", "e_mail", "city")
     ordering = ("name",)
+    inspect_view_enabled = True
 
 
 class TeamGroup(ModelAdminGroup):

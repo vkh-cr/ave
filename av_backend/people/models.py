@@ -10,6 +10,8 @@ class Person(BaseModel):
     phone = m.CharField(max_length=128, blank=True)
     city = m.CharField(max_length=128, blank=True)
 
+    sections = m.ManyToManyField(through="team.TeamMembership", to="team.TeamSection")
+
     class Meta:
         constraints = [
             m.UniqueConstraint("code", name="uniq_person_code"),

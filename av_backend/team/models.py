@@ -9,6 +9,8 @@ class TeamSection(BaseModel):
     e_mail = m.EmailField(max_length=128, blank=True)
     phone = m.CharField(max_length=128, blank=True)
 
+    members = m.ManyToManyField(through="team.TeamMembership", to="people.Person")
+
     class Meta:
         constraints = [
             m.UniqueConstraint("code", name="uniq_section_code"),
