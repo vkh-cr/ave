@@ -1,8 +1,8 @@
 # Python and others
-__pycache__
-*.pyc
-.DS_Store
-*.swp
+**/__pycache__
+**/*.pyc
+**/.DS_Store
+**/*.swp
 /venv/
 /tmp/
 /.vagrant/
@@ -34,8 +34,9 @@ wheels/
 *.egg
 
 # Django project
-/media/
-/static/
-/secret/
-*.sqlite3
+media/
+static/
+secret/
 .env
+**/django.mo
+**/*.sqlite3
