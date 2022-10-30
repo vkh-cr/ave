@@ -1,0 +1,21 @@
+{% extends "wagtailadmin/home.html" %}
+{% load wagtailadmin_tags i18n %}
+
+{% block content %}
+    {% fragment as header_title %}
+        {% block branding_welcome %}{% blocktrans trimmed %}Welcome to the {{ site_name }}{% endblocktrans %}{% endblock %}
+    {% endfragment %}
+
+    {% avatar_url user as avatar %}
+    {% include "wagtailadmin/shared/header.html" with title=header_title description=user|user_display_name avatar=avatar merged=1 %}
+
+    <div class="nice-padding">
+        {% if panels %}
+            {% for panel in panels %}
+                {% component panel fallback_render_method=True %}
+            {% endfor %}
+        {% else %}
+            <p>{% trans "This is your dashboard on which helpful information about content you've created will be displayed." %}</p>
+        {% endif %}
+    </div>
+{% endblock %}

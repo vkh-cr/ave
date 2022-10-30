@@ -1,0 +1,15 @@
+RICH_TEXT_BLOCK_FEATURES = [
+    "h2",
+    "h3",
+    "h4",
+    "bold",
+    "italic",
+    "superscript",
+    "subscript",
+    "strikethrough",
+    "ol",
+    "ul",
+    "hr",
+    "link",
+    "document-link",
+]

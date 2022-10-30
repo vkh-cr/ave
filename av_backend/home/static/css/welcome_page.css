@@ -45,7 +45,7 @@ svg:not(:root) {
 }
 
 .header {
-    display: flex;
+    /*display: flex;*/
     justify-content: space-between;
     align-items: center;
     padding-top: 20px;
@@ -53,10 +53,10 @@ svg:not(:root) {
     border-bottom: 1px solid #e6e6e6;
 }
 
-.logo {
-    width: 150px;
-    margin-inline-end: 20px;
-}
+/*.logo {*/
+/*    width: 150px;*/
+/*    margin-inline-end: 20px;*/
+/*}*/
 
 .logo a {
     display: block;

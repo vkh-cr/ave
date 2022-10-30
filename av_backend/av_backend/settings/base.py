@@ -97,9 +97,14 @@ AUTH_PASSWORD_VALIDATORS = [
 TIME_ZONE = "UTC"
 USE_TZ = True
 
-LANGUAGE_CODE = "en-us"
+# LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "cs"
 USE_I18N = True
 USE_L10N = True
+
+LOCALE_PATHS = [
+    PROJECT_DIR / "locale",
+]
 
 
 STATICFILES_FINDERS = [
@@ -124,7 +129,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "core.User"
 
 # Wagtail
-WAGTAIL_SITE_NAME = "AV Apps Backend"
+WAGTAIL_SITE_NAME = "AV CMS"
 WAGTAILADMIN_BASE_URL = "http://example.com"
 
 WAGTAIL_USER_EDIT_FORM = "core.forms.CustomUserEditForm"

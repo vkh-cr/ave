@@ -38,7 +38,9 @@ USER ${USER}
 # TODO: Variables are not necessary in build time
 ENV GOOGLE_APIS_CREDENTIALS_FILE=/dev/null
 ENV AV_TEAM_SHEET_ID=None
+
 RUN python manage.py collectstatic --noinput --clear
+RUN python manage.py compilemessages
 
 RUN chmod +x entrypoint.sh
 ENTRYPOINT "./entrypoint.sh"
