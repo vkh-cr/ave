@@ -24,6 +24,8 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+    "poethepoet",
+    "pip-tools",
     "jupyter",
 ]
 test = [
@@ -41,6 +43,7 @@ manage = "python manage.py"
 pip-compile-prod = "pip-compile -o requirements.txt pyproject.toml"
 pip-compile-dev = "pip-compile --extra dev -o requirements.dev.txt pyproject.toml"
 pip-compile-test = "pip-compile --extra test -o requirements.test.txt pyproject.toml"
+compile-requirements = ["pip-compile-prod", "pip-compile-dev", "pip-compile-test"]
 
 
 [tool.setuptools]
