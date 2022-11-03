@@ -32,12 +32,6 @@ test = [
     "pytest-django",
 ]
 
-#[tool.taskipy.tasks]
-#"manage" = "python manage.py"
-#"pip-compile-prod" = "pip-compile -o requirement.txt pyproject.toml"
-#"pip-compile-dev" = "pip-compile --extra dev -o requirement.txt pyproject.toml"
-#"pip-compile-test" = "pip-compile --extra test -o requirement.txt pyproject.toml"
-
 [tool.poe.tasks]
 manage = "python manage.py"
 pip-compile-prod = "pip-compile -o requirements.txt pyproject.toml"
@@ -50,5 +44,4 @@ compile-requirements = ["pip-compile-prod", "pip-compile-dev", "pip-compile-test
 py-modules = [
     "av_backend",
     "home",
-    "search",
 ]

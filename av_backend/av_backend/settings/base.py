@@ -3,7 +3,6 @@ from .env import *
 INSTALLED_APPS = [
     "core",
     "home",
-    "search",
     "people",
     "team",
     "av",
