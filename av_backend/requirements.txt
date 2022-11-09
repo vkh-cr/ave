@@ -135,8 +135,9 @@ sqlparse==0.4.3
     # via django
 strawberry-django-plus==1.28.6
     # via av-backend (pyproject.toml)
-strawberry-graphql==0.140.3
+strawberry-graphql==0.140.2
     # via
+    #   av-backend (pyproject.toml)
     #   strawberry-django-plus
     #   strawberry-graphql-django
 strawberry-graphql-django==0.7.1

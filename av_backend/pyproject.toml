@@ -19,6 +19,7 @@ dependencies = [
     # GraphQL
     "strawberry-graphql-django==0.7.1",
     "strawberry-django-plus==1.28.6",
+    "strawberry-graphql==0.140.2",  # FIXME: 0.140.3 is broken
     # Google APIs
     "google-api-python-client==2.64.0",
     "google-auth-httplib2==0.1.0",
