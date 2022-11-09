@@ -53,7 +53,7 @@ decorator==5.1.1
     # via ipython
 defusedxml==0.7.1
     # via nbconvert
-django==4.1.2
+django==4.1.3
     # via
     #   av-backend (pyproject.toml)
     #   django-extensions
@@ -64,6 +64,8 @@ django==4.1.2
     #   django-taggit
     #   django-treebeard
     #   djangorestframework
+    #   strawberry-django-plus
+    #   strawberry-graphql-django
     #   wagtail
 django-cogwheels==0.3
     # via wagtailmenus
@@ -99,7 +101,7 @@ google-api-core==2.10.2
     # via google-api-python-client
 google-api-python-client==2.64.0
     # via av-backend (pyproject.toml)
-google-auth==2.13.0
+google-auth==2.14.1
     # via
     #   google-api-core
     #   google-api-python-client
@@ -113,6 +115,8 @@ google-auth-oauthlib==0.5.3
     # via av-backend (pyproject.toml)
 googleapis-common-protos==1.56.4
     # via google-api-core
+graphql-core==3.2.3
+    # via strawberry-graphql
 html5lib==1.1
     # via wagtail
 httplib2==0.21.0
@@ -123,7 +127,7 @@ idna==3.4
     # via
     #   anyio
     #   requests
-ipykernel==6.16.2
+ipykernel==6.17.1
     # via
     #   ipywidgets
     #   jupyter
@@ -131,7 +135,7 @@ ipykernel==6.16.2
     #   nbclassic
     #   notebook
     #   qtconsole
-ipython==8.5.0
+ipython==8.6.0
     # via
     #   ipykernel
     #   ipywidgets
@@ -151,7 +155,7 @@ jinja2==3.1.2
     #   nbclassic
     #   nbconvert
     #   notebook
-jsonschema==4.16.0
+jsonschema==4.17.0
     # via nbformat
 jupyter==1.0.0
     # via av-backend (pyproject.toml)
@@ -166,7 +170,7 @@ jupyter-client==7.4.4
     #   qtconsole
 jupyter-console==6.4.4
     # via jupyter
-jupyter-core==4.11.2
+jupyter-core==5.0.0
     # via
     #   jupyter-client
     #   jupyter-server
@@ -175,7 +179,7 @@ jupyter-core==4.11.2
     #   nbformat
     #   notebook
     #   qtconsole
-jupyter-server==1.21.0
+jupyter-server==1.23.1
     # via
     #   nbclassic
     #   notebook-shim
@@ -195,11 +199,11 @@ matplotlib-inline==0.1.6
     #   ipython
 mistune==2.0.4
     # via nbconvert
-nbclassic==0.4.7
+nbclassic==0.4.8
     # via notebook
 nbclient==0.7.0
     # via nbconvert
-nbconvert==7.2.3
+nbconvert==7.2.4
     # via
     #   jupyter
     #   jupyter-server
@@ -221,12 +225,12 @@ nest-asyncio==1.5.6
     #   notebook
 notebook==6.5.2
     # via jupyter
-notebook-shim==0.2.0
+notebook-shim==0.2.2
     # via nbclassic
 oauthlib==3.2.2
     # via requests-oauthlib
 openpyxl==3.0.10
-    # via tablib
+    # via wagtail
 packaging==21.3
     # via
     #   build
@@ -250,6 +254,8 @@ pillow==9.3.0
     # via wagtail
 pip-tools==6.9.0
     # via av-backend (pyproject.toml)
+platformdirs==2.5.3
+    # via jupyter-core
 poethepoet==0.16.4
     # via av-backend (pyproject.toml)
 prometheus-client==0.15.0
@@ -257,7 +263,7 @@ prometheus-client==0.15.0
     #   jupyter-server
     #   nbclassic
     #   notebook
-prompt-toolkit==3.0.31
+prompt-toolkit==3.0.32
     # via
     #   ipython
     #   jupyter-console
@@ -265,7 +271,7 @@ protobuf==4.21.9
     # via
     #   google-api-core
     #   googleapis-common-protos
-psutil==5.9.3
+psutil==5.9.4
     # via ipykernel
 psycopg2==2.9.4
     # via av-backend (pyproject.toml)
@@ -293,11 +299,13 @@ pyparsing==3.0.9
     # via
     #   httplib2
     #   packaging
-pyrsistent==0.18.1
+pyrsistent==0.19.2
     # via jsonschema
 python-dateutil==2.8.2
-    # via jupyter-client
-pytz==2022.5
+    # via
+    #   jupyter-client
+    #   strawberry-graphql
+pytz==2022.6
     # via
     #   django-modelcluster
     #   djangorestframework
@@ -310,9 +318,9 @@ pyzmq==24.0.1
     #   nbclassic
     #   notebook
     #   qtconsole
-qtconsole==5.3.2
+qtconsole==5.4.0
     # via jupyter
-qtpy==2.2.1
+qtpy==2.3.0
     # via qtconsole
 requests==2.28.1
     # via
@@ -345,8 +353,16 @@ sqlparse==0.4.3
     # via django
 stack-data==0.6.0
     # via ipython
-tablib[xls,xlsx]==3.2.1
-    # via wagtail
+strawberry-django-plus==1.28.6
+    # via av-backend (pyproject.toml)
+strawberry-graphql==0.140.3
+    # via
+    #   strawberry-django-plus
+    #   strawberry-graphql-django
+strawberry-graphql-django==0.7.1
+    # via
+    #   av-backend (pyproject.toml)
+    #   strawberry-django-plus
 telepath==0.3
     # via wagtail
 terminado==0.17.0
@@ -381,11 +397,15 @@ traitlets==5.5.0
     #   nbformat
     #   notebook
     #   qtconsole
+typing-extensions==4.4.0
+    # via
+    #   strawberry-django-plus
+    #   strawberry-graphql
 uritemplate==4.1.1
     # via google-api-python-client
 urllib3==1.26.12
     # via requests
-wagtail==4.0.4
+wagtail==4.1
     # via av-backend (pyproject.toml)
 wagtailmenus==3.1.3
     # via av-backend (pyproject.toml)
@@ -396,9 +416,9 @@ webencodings==0.5.1
     #   bleach
     #   html5lib
     #   tinycss2
-websocket-client==1.4.1
+websocket-client==1.4.2
     # via jupyter-server
-wheel==0.37.1
+wheel==0.38.3
     # via pip-tools
 whitenoise[brotli]==6.2.0
     # via av-backend (pyproject.toml)
@@ -406,12 +426,6 @@ widgetsnbextension==4.0.3
     # via ipywidgets
 willow==1.4.1
     # via wagtail
-xlrd==2.0.1
-    # via tablib
-xlsxwriter==3.0.3
-    # via wagtail
-xlwt==1.3.0
-    # via tablib
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip

@@ -1,5 +1,4 @@
 from wagtail import hooks
-from wagtail.admin.panels import InlinePanel
 from wagtail.admin.search import SearchArea
 from wagtail.contrib.modeladmin.options import (
     ModelAdmin,
@@ -7,8 +6,7 @@ from wagtail.contrib.modeladmin.options import (
     ModelAdminGroup,
 )
 
-from people.models import Person
-from team.models import TeamSection
+from apps.people.models import Person, TeamSection
 
 
 class TeamSectionAdmin(ModelAdmin):

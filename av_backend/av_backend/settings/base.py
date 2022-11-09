@@ -1,12 +1,10 @@
 from .env import *
 
 INSTALLED_APPS = [
-    "core",
-    "home",
-    "people",
-    "team",
-    "av",
-    "imports",
+    "apps.core",
+    "apps.av",
+    "apps.imports",
+    "apps.people",
     "website",
     # Wagtail
     "wagtail.contrib.forms",

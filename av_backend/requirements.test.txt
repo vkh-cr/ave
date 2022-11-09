@@ -20,7 +20,7 @@ certifi==2022.9.24
     # via requests
 charset-normalizer==2.1.1
     # via requests
-django==4.1.2
+django==4.1.3
     # via
     #   av-backend (pyproject.toml)
     #   django-extensions
@@ -31,6 +31,8 @@ django==4.1.2
     #   django-taggit
     #   django-treebeard
     #   djangorestframework
+    #   strawberry-django-plus
+    #   strawberry-graphql-django
     #   wagtail
 django-cogwheels==0.3
     # via wagtailmenus
@@ -60,7 +62,7 @@ google-api-core==2.10.2
     # via google-api-python-client
 google-api-python-client==2.64.0
     # via av-backend (pyproject.toml)
-google-auth==2.13.0
+google-auth==2.14.1
     # via
     #   google-api-core
     #   google-api-python-client
@@ -74,6 +76,8 @@ google-auth-oauthlib==0.5.3
     # via av-backend (pyproject.toml)
 googleapis-common-protos==1.56.4
     # via google-api-core
+graphql-core==3.2.3
+    # via strawberry-graphql
 html5lib==1.1
     # via wagtail
 httplib2==0.21.0
@@ -89,7 +93,7 @@ l18n==2021.3
 oauthlib==3.2.2
     # via requests-oauthlib
 openpyxl==3.0.10
-    # via tablib
+    # via wagtail
 packaging==21.3
     # via pytest
 pillow==9.3.0
@@ -116,7 +120,9 @@ pytest==7.2.0
     # via pytest-django
 pytest-django==4.5.2
     # via av-backend (pyproject.toml)
-pytz==2022.5
+python-dateutil==2.8.2
+    # via strawberry-graphql
+pytz==2022.6
     # via
     #   django-modelcluster
     #   djangorestframework
@@ -136,19 +142,32 @@ six==1.16.0
     #   google-auth-httplib2
     #   html5lib
     #   l18n
+    #   python-dateutil
 soupsieve==2.3.2.post1
     # via beautifulsoup4
 sqlparse==0.4.3
     # via django
-tablib[xls,xlsx]==3.2.1
-    # via wagtail
+strawberry-django-plus==1.28.6
+    # via av-backend (pyproject.toml)
+strawberry-graphql==0.140.3
+    # via
+    #   strawberry-django-plus
+    #   strawberry-graphql-django
+strawberry-graphql-django==0.7.1
+    # via
+    #   av-backend (pyproject.toml)
+    #   strawberry-django-plus
 telepath==0.3
     # via wagtail
+typing-extensions==4.4.0
+    # via
+    #   strawberry-django-plus
+    #   strawberry-graphql
 uritemplate==4.1.1
     # via google-api-python-client
 urllib3==1.26.12
     # via requests
-wagtail==4.0.4
+wagtail==4.1
     # via av-backend (pyproject.toml)
 wagtailmenus==3.1.3
     # via av-backend (pyproject.toml)
@@ -158,9 +177,3 @@ whitenoise[brotli]==6.2.0
     # via av-backend (pyproject.toml)
 willow==1.4.1
     # via wagtail
-xlrd==2.0.1
-    # via tablib
-xlsxwriter==3.0.3
-    # via wagtail
-xlwt==1.3.0
-    # via tablib
