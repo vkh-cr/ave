@@ -71,7 +71,7 @@ WSGI_APPLICATION = "av_backend.wsgi.application"
 
 
 DATABASES = {
-    "default": env.db("DATABASE_URL", default="psql://av:av@localhost:5432/av"),
+    "default": env.db("DATABASE_URL", default=f"sqlite:///{BASE_DIR}/db.sqlite3"),
 }
 
 
@@ -94,7 +94,6 @@ AUTH_PASSWORD_VALIDATORS = [
 TIME_ZONE = "UTC"
 USE_TZ = True
 
-# LANGUAGE_CODE = "en-us"
 LANGUAGE_CODE = "cs"
 USE_I18N = True
 USE_L10N = True
@@ -129,8 +128,8 @@ AUTH_USER_MODEL = "core.User"
 WAGTAIL_SITE_NAME = "AV CMS"
 WAGTAILADMIN_BASE_URL = "http://example.com"
 
-WAGTAIL_USER_EDIT_FORM = "core.forms.CustomUserEditForm"
-WAGTAIL_USER_CREATION_FORM = "core.forms.CustomUserCreationForm"
+WAGTAIL_USER_EDIT_FORM = "apps.core.forms.CustomUserEditForm"
+WAGTAIL_USER_CREATION_FORM = "apps.core.forms.CustomUserCreationForm"
 WAGTAIL_USER_CUSTOM_FIELDS = [
     # "country",
     # "status",
@@ -143,5 +142,7 @@ WAGTAILSEARCH_BACKENDS = {
 }
 
 # Backend settings
-GOOGLE_APIS_CREDENTIALS_FILE = env.path("GOOGLE_APIS_CREDENTIALS_FILE")
-AV_TEAM_SHEET_ID = env.str("AV_TEAM_SHEET_ID")
+GOOGLE_APIS_CREDENTIALS_FILE = env.path(
+    "GOOGLE_APIS_CREDENTIALS_FILE", default="/dev/null"
+)
+AV_TEAM_SHEET_ID = env.str("AV_TEAM_SHEET_ID", default="")
