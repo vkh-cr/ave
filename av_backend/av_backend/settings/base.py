@@ -135,6 +135,14 @@ WAGTAIL_USER_CUSTOM_FIELDS = [
     # "status",
 ]
 
+WAGTAIL_ALLOW_UNICODE_SLUGS = False
+TAGGIT_CASE_INSENSITIVE = True
+
+# Allow uploading of 100MB files
+WAGTAILIMAGES_MAX_UPLOAD_SIZE = 100 * 1024 * 1024
+# New users with a blank password will need to reset their password first
+WAGTAILUSERS_PASSWORD_REQUIRED = False
+
 WAGTAILSEARCH_BACKENDS = {
     "default": {
         "BACKEND": "wagtail.search.backends.database",
