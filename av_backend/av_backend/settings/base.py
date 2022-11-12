@@ -124,6 +124,10 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "core.User"
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 # Wagtail
 WAGTAIL_SITE_NAME = "AV CMS"
 WAGTAILADMIN_BASE_URL = "http://example.com"
