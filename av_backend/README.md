@@ -15,7 +15,7 @@ $ git clone git@github.com:vkh-cr/ave.git
 
 🔧 Switch to project directory: 
 ```bash
-$ cd ave/ave
+$ cd ave/av_backend
 ```
 
 🔧 Create virtual environment. Here, Python 3 module `venv` is used, but you may use anything else to create environment (`virtualenv` package, `virtualenvwrapper`, `pipenv`, `PyCharm` integration etc.):
