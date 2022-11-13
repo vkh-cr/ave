@@ -15,6 +15,7 @@ volumes:
 services:
   db:
     image: postgres:14.5
+    restart: unless-stopped
     environment:
       PGDATA: /var/lib/postgresql/data
       POSTGRES_DB: av
@@ -40,7 +41,8 @@ services:
   #  command: tail -F backend
 
   backend:
-    image: zdeneksoftic/av-backend:v0.0.1-dev2
+    image: zdeneksoftic/av-backend:v0.0.8
+    restart: unless-stopped
     environment:
       DJANGO_SETTINGS_MODULE: av_backend.settings.production
       DATABASE_URL: postgresql://postgres:postgres@db:5432/av
@@ -63,6 +65,7 @@ services:
 
   proxy:
     image: nginx
+    restart: unless-stopped
     depends_on:
       backend:
         condition: service_started
