@@ -7,9 +7,10 @@
 
 {% block extra_css %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Ubuntu:wght@400;500&display=swap');
+{#@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Ubuntu:wght@400;500&display=swap');#}
+</style>
 <link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
 {% endblock extra_css %}
@@ -19,7 +20,7 @@ Delete the line below if you're just getting started and want to remove the welc
 {#{% include 'home/welcome_page.html' %}#}
 
 <header class="header">
-    <img class="logo" src="{% static "images/logos/logo_av21.svg" %}" alt="logo AV 21">
+    <a href="/"><img class="logo" src="{% static "images/logos/logo_av21.svg" %}" alt="logo AV 21"></a>
     <nav>
         {#{% wagtail_site as current_site %}#}
         {#{{ current_site.site_name }}#}

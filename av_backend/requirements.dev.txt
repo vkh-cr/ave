@@ -159,7 +159,7 @@ jsonschema==4.17.0
     # via nbformat
 jupyter==1.0.0
     # via av-backend (pyproject.toml)
-jupyter-client==7.4.4
+jupyter-client==7.4.5
     # via
     #   ipykernel
     #   jupyter-console
@@ -254,7 +254,7 @@ pillow==9.3.0
     # via wagtail
 pip-tools==6.9.0
     # via av-backend (pyproject.toml)
-platformdirs==2.5.3
+platformdirs==2.5.4
     # via jupyter-core
 poethepoet==0.16.4
     # via av-backend (pyproject.toml)
@@ -351,7 +351,7 @@ soupsieve==2.3.2.post1
     # via beautifulsoup4
 sqlparse==0.4.3
     # via django
-stack-data==0.6.0
+stack-data==0.6.1
     # via ipython
 strawberry-django-plus==1.28.6
     # via av-backend (pyproject.toml)
@@ -406,7 +406,7 @@ uritemplate==4.1.1
     # via google-api-python-client
 urllib3==1.26.12
     # via requests
-wagtail==4.1
+wagtail==4.1.1
     # via av-backend (pyproject.toml)
 wagtailmenus==3.1.3
     # via av-backend (pyproject.toml)
@@ -419,7 +419,7 @@ webencodings==0.5.1
     #   tinycss2
 websocket-client==1.4.2
     # via jupyter-server
-wheel==0.38.3
+wheel==0.38.4
     # via pip-tools
 whitenoise[brotli]==6.2.0
     # via av-backend (pyproject.toml)
