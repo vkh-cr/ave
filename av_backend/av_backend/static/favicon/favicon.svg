@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="358" height="358">
+    <svg width="358" height="358" viewBox="0 0 266 358" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0.991333 10.5C0.991333 4.97715 5.46849 0.5 10.9913 0.5H140.991C146.514 0.5 150.991 4.97715 150.991 10.5V189.5C150.991 195.023 146.514 199.5 140.991 199.5H10.9913C5.46848 199.5 0.991333 195.023 0.991333 189.5V10.5Z" fill="#2C677B"></path>
+        <rect x="36.9913" y="163.499" width="114" height="158" rx="10" fill="#E0B73B"></rect>
+        <rect x="115.009" y="36.5" width="150" height="163" rx="10" fill="#BA5D3F"></rect>
+        <rect x="114.991" y="163.499" width="114" height="194" rx="10" fill="#2A77A0"></rect>
+        <rect x="114.991" y="36.5" width="36" height="285" fill="white"></rect>
+        <path d="M72.9913 84.5H192.991V120.5H72.9913V84.5Z" fill="white"></path>
+        <path d="M36.9913 163.499H228.991V199.499H36.9913V163.499Z" fill="white"></path>
+    </svg>
+    <style>@media (prefers-color-scheme: light) { :root { filter: none; } }</style>
+</svg>
