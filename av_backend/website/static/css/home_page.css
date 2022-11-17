@@ -13,6 +13,8 @@ html {
 }
 
 body {
+    background: url("../images/bg_cross.png") repeat;
+    backdrop-filter: blur(5px);
     color: #231f20;
     max-width: 960px;
     min-height: 100vh;
