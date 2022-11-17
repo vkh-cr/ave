@@ -42,4 +42,5 @@ ARG ALLOWED_HOSTS="*"
 RUN python manage.py collectstatic --noinput --clear
 RUN python manage.py compilemessages
 
-ENTRYPOINT "./entrypoint.sh"
+RUN chmod +x ./entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]
