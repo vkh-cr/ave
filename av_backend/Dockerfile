@@ -28,7 +28,6 @@ RUN pip install -r /requirements.txt
 WORKDIR /app
 
 RUN mkdir "media"
-
 RUN chown ${USER}:${USER} /app
 
 COPY --chown=${USER}:${USER} . .
@@ -36,12 +35,8 @@ COPY --chown=${USER}:${USER} . .
 # User to run the build commands below and the server itself.
 USER ${USER}
 
-# TODO: Variables are not necessary in build time
-ENV GOOGLE_APIS_CREDENTIALS_FILE=/dev/null
-ENV AV_TEAM_SHEET_ID=None
-
+ENV DJANGO_SETTINGS_MODULE="av_backend.settings.production"
 RUN python manage.py collectstatic --noinput --clear
 RUN python manage.py compilemessages
 
-RUN chmod +x entrypoint.sh
 ENTRYPOINT "./entrypoint.sh"
