@@ -23,6 +23,7 @@ charset-normalizer==2.1.1
 django==4.1.3
     # via
     #   av-backend (pyproject.toml)
+    #   django-admin-display
     #   django-extensions
     #   django-filter
     #   django-model-utils
@@ -31,9 +32,12 @@ django==4.1.3
     #   django-taggit
     #   django-treebeard
     #   djangorestframework
+    #   strawberry-django-jwt
     #   strawberry-django-plus
     #   strawberry-graphql-django
     #   wagtail
+django-admin-display==1.3.0
+    # via strawberry-django-jwt
 django-cogwheels==0.3
     # via wagtailmenus
 django-environ==0.9.0
@@ -74,7 +78,7 @@ google-auth-httplib2==0.1.0
     #   google-api-python-client
 google-auth-oauthlib==0.5.3
     # via av-backend (pyproject.toml)
-googleapis-common-protos==1.56.4
+googleapis-common-protos==1.57.0
     # via google-api-core
 graphql-core==3.2.3
     # via strawberry-graphql
@@ -95,7 +99,9 @@ oauthlib==3.2.2
 openpyxl==3.0.10
     # via wagtail
 packaging==21.3
-    # via pytest
+    # via
+    #   pytest
+    #   strawberry-django-jwt
 pillow==9.3.0
     # via wagtail
 pluggy==1.0.0
@@ -112,6 +118,8 @@ pyasn1==0.4.8
     #   rsa
 pyasn1-modules==0.2.8
     # via google-auth
+pyjwt==2.6.0
+    # via strawberry-django-jwt
 pyparsing==3.0.9
     # via
     #   httplib2
@@ -147,16 +155,18 @@ soupsieve==2.3.2.post1
     # via beautifulsoup4
 sqlparse==0.4.3
     # via django
-strawberry-django-plus==1.28.6
+strawberry-django-jwt==0.2.3
     # via av-backend (pyproject.toml)
-strawberry-graphql==0.140.2
+strawberry-django-plus==1.30
+    # via av-backend (pyproject.toml)
+strawberry-graphql==0.142.2
     # via
-    #   av-backend (pyproject.toml)
+    #   strawberry-django-jwt
     #   strawberry-django-plus
     #   strawberry-graphql-django
-strawberry-graphql-django==0.7.1
+strawberry-graphql-django==0.8.2
     # via
-    #   av-backend (pyproject.toml)
+    #   strawberry-django-jwt
     #   strawberry-django-plus
 telepath==0.3
     # via wagtail

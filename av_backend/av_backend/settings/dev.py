@@ -6,6 +6,16 @@ DEBUG = True
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-ss8wu03d6yuwj+(rv8kk3p-=sqa)jxpj_dx)&)ibets%@08-&e"
 
+INSTALLED_APPS = INSTALLED_APPS + [
+    "debug_toolbar",
+    "strawberry_django_plus",  # Added to make debug toolbar middleware work
+]
+
+MIDDLEWARE = [
+    # "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "strawberry_django_plus.middlewares.debug_toolbar.DebugToolbarMiddleware",
+] + MIDDLEWARE
+
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ["*"]
 

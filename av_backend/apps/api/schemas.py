@@ -1,4 +1,7 @@
 from strawberry.types import Info
+import strawberry_django_jwt.mutations as jwt_mutations
+from strawberry_django_jwt.decorators import login_required as lr
+from strawberry_django_jwt.middleware import JSONWebTokenMiddleware
 from strawberry_django_plus.directives import SchemaDirectiveExtension
 from strawberry_django_plus.optimizer import DjangoOptimizerExtension
 from typing import List, Type, cast
@@ -7,6 +10,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
 
 from strawberry_django_plus import gql
+from strawberry_django_plus.permissions import IsAuthenticated
 
 from .base import update_mutation, delete_mutation
 from .types import (
@@ -25,7 +29,7 @@ UserModel = cast(Type[AbstractUser], get_user_model())
 class CoreQuery:
     users: List[UserType] = gql.django.field()
 
-    @gql.field
+    @gql.field(directives=[IsAuthenticated()])
     def info(self, info: Info) -> InfoType:
         user = None
         if info.context.request.user.pk:
@@ -38,12 +42,15 @@ class CoreQuery:
 
 @gql.type
 class TeamQuery:
-    team_sections: List[TeamSectionType] = gql.django.field()
+    team_sections: List[TeamSectionType] = gql.django.field(
+        directives=[IsAuthenticated()]
+    )
 
 
 @gql.type
 class PersonsQuery:
-    persons: List[PersonType] = gql.django.field()
+    # persons: List[PersonType] = lr(gql.django.field(directives=[IsAuthenticated()]))
+    persons: List[PersonType] = gql.django.field(directives=[IsAuthenticated()])
 
 
 @gql.type
@@ -62,7 +69,10 @@ class Query(PersonsQuery, TeamQuery, CoreQuery):
 
 @gql.type
 class Mutation(PersonsMutation):
-    ...
+    token_auth = jwt_mutations.ObtainJSONWebToken.obtain
+    verify_token = jwt_mutations.Verify.verify
+    refresh_token = jwt_mutations.Refresh.refresh
+    delete_token_cookie = jwt_mutations.DeleteJSONWebTokenCookie.delete_cookie
 
 
 schema = gql.Schema(
@@ -71,5 +81,6 @@ schema = gql.Schema(
     extensions=[
         SchemaDirectiveExtension,
         DjangoOptimizerExtension,
+        JSONWebTokenMiddleware,
     ],
 )

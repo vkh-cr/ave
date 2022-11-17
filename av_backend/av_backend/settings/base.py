@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "wagtailmenus",
     # Third-party apps
     "django_extensions",
+    "strawberry_django_jwt.refresh_token",
     # Django apps
     "django.contrib.admin",
     "django.contrib.auth",
@@ -73,6 +74,11 @@ WSGI_APPLICATION = "av_backend.wsgi.application"
 DATABASES = {
     "default": env.db("DATABASE_URL", default=f"sqlite:///{BASE_DIR}/db.sqlite3"),
 }
+
+AUTHENTICATION_BACKENDS = [
+    "strawberry_django_jwt.backends.JSONWebTokenBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
 
 
 AUTH_PASSWORD_VALIDATORS = [

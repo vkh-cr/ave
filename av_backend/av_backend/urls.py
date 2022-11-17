@@ -1,7 +1,10 @@
 from django.conf import settings
 from django.urls import include, path
 from django.contrib import admin
-from strawberry.django.views import GraphQLView
+
+# from strawberry.django.views import GraphQLView
+from strawberry_django_jwt.views import StatusHandlingGraphQLView as GraphQLView
+from strawberry_django_jwt.decorators import jwt_cookie
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
@@ -13,7 +16,7 @@ urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
-    path("graphql/", GraphQLView.as_view(schema=api_schema)),
+    path("graphql/", jwt_cookie(GraphQLView.as_view(schema=api_schema))),
 ]
 
 
@@ -24,6 +27,10 @@ if settings.DEBUG:
     # Serve static and media files from development server
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    urlpatterns = urlpatterns + [
+        path("__debug__/", include("debug_toolbar.urls")),
+    ]
 
 urlpatterns = urlpatterns + [
     # For anything not caught by a more specific rule above, hand over to
