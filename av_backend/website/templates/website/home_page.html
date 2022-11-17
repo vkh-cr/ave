@@ -11,16 +11,24 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Ubuntu:wght@400;500&display=swap');
 {#@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Ubuntu:wght@400;500&display=swap');#}
 </style>
-<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
-<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="{% static 'css/home_page.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
 
-{#{% include 'home/welcome_page.html' %}#}
+<header>
+    <a href="/">
+        <svg alt="logo AV 21" class="logo" viewBox="0 0 265 357" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 10C0 4.47715 4.47715 0 10 0H140C145.523 0 150 4.47715 150 10V189C150 194.523 145.523 199 140 199H10C4.47715 199 0 194.523 0 189V10Z" fill="#093A4B"/>
+            <rect x="36" y="162.999" width="114" height="158" rx="10" fill="#E0B73B"/>
+            <rect x="114.017" y="36" width="150" height="163" rx="10" fill="#BA5D3F"/>
+            <rect x="114" y="162.999" width="114" height="194" rx="10" fill="#2A77A0"/>
+            <rect x="114" y="36" width="36" height="285" fill="white"/>
+            <path d="M72 84H192V120H72V84Z" fill="white"/>
+            <path d="M36 162.999H228V198.999H36V162.999Z" fill="white"/>
+        </svg>
+    </a>
 
-<header class="header">
-    <a href="/"><img class="logo" src="{% static "images/logos/logo_av21.svg" %}" alt="logo AV 21"></a>
     <nav>
         {#{% wagtail_site as current_site %}#}
         {#{{ current_site.site_name }}#}
@@ -29,10 +37,15 @@
     </nav>
 </header>
 
-<main class="main">
+<main>
     <h1>{{ page.title }}</h1>
     <div class="body">{% include_block page.body %}</div>
 </main>
+
+
+<footer>
+    <p class="love">Vytvořeno s ♥️ láskou</p>
+</footer>
 
 
 {% endblock content %}
