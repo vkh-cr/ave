@@ -36,6 +36,9 @@ COPY --chown=${USER}:${USER} . .
 USER ${USER}
 
 ENV DJANGO_SETTINGS_MODULE="av_backend.settings.production"
+ARG SECRET_KEY="build-time-key"
+ARG ALLOWED_HOSTS="*"
+
 RUN python manage.py collectstatic --noinput --clear
 RUN python manage.py compilemessages
 
