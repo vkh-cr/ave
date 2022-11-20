@@ -8,7 +8,6 @@ SECRET_KEY = "django-insecure-ss8wu03d6yuwj+(rv8kk3p-=sqa)jxpj_dx)&)ibets%@08-&e
 
 INSTALLED_APPS = INSTALLED_APPS + [
     "debug_toolbar",
-    "strawberry_django_plus",  # Added to make debug toolbar middleware work
 ]
 
 MIDDLEWARE = [
