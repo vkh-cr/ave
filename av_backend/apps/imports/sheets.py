@@ -1,3 +1,7 @@
+"""
+This module contains experimental services for importing AV-specific data from Google Sheets
+"""
+
 import re
 
 from apiclient import discovery
@@ -9,8 +13,6 @@ from django.conf import settings
 from apps.people.models import Person, TeamSection, TeamMembership
 
 SCOPES = [
-    # "https://www.googleapis.com/auth/drive",
-    # "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/spreadsheets",
 ]
 
