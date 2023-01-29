@@ -19,6 +19,7 @@ from django.core.exceptions import PermissionDenied
 from strawberry import UNSET, BasePermission
 from strawberry.django.context import StrawberryDjangoContext
 from strawberry.types import Info
+from strawberry_django_plus import gql
 from strawberry_django_plus.mutations import resolvers
 from strawberry_django_plus.mutations.fields import (
     DjangoUpdateMutationField,
@@ -27,21 +28,45 @@ from strawberry_django_plus.mutations.fields import (
 from strawberry_django_plus.optimizer import DjangoOptimizerExtension
 from strawberry_django_plus.permissions import (
     running_checks,
+    IsAuthenticated,
 )
 from strawberry_django_plus.utils.resolvers import async_safe
 from strawberry_django_plus.utils.typing import UserType
 
 
+def django_field(*args, **kwargs):
+    directives = set(kwargs.get("directives", []))
+    directives.add(IsAuthenticated())
+    kwargs["directives"] = list(directives)
+    return gql.django.field(*args, **kwargs)
+
+
+def field(*args, **kwargs):
+    directives = set(kwargs.get("directives", []))
+    directives.add(IsAuthenticated())
+    kwargs["directives"] = list(directives)
+    return gql.field(*args, **kwargs)
+
+
 @strawberry.input(
-    description="",
+    description="UUID input",
 )
 class UUIDInput:
     uuid: UUID
 
 
-def get_with_perms(uuid, info, *, required=False, model=None):
+@strawberry.input(
+    description="ID input",
+)
+class IDInput:
+    # this needs to be explicit type,
+    # not gql.auto since it resolves to GlobalID
+    id: int
+
+
+def get_with_perms(lookups, info, *, required=False, model=None):
     try:
-        instance = model.objects.get(uuid=uuid)
+        instance = model.objects.filter(**lookups).get()
     except model.DoesNotExist:
         raise
 
@@ -59,7 +84,79 @@ def get_with_perms(uuid, info, *, required=False, model=None):
     return instance
 
 
-def update_mutation(
+def id_update_mutation(
+    input_type: Type[IDInput],
+    *,
+    name: Optional[str] = None,
+    field_name: Optional[str] = None,
+    filters: Any = UNSET,
+    is_subscription: bool = False,
+    description: Optional[str] = None,
+    init: Literal[True] = True,
+    permission_classes: Optional[List[Type[BasePermission]]] = None,
+    deprecation_reason: Optional[str] = None,
+    default: Any = dataclasses.MISSING,
+    default_factory: Union[Callable[..., object], object] = dataclasses.MISSING,
+    metadata: Optional[Mapping[Any, Any]] = None,
+    directives: Optional[Sequence[object]] = (),
+    handle_django_errors: bool = True,
+) -> Any:
+    return DjangoUpdateMutationField(
+        input_type=input_type,
+        python_name=None,
+        django_name=field_name,
+        graphql_name=name,
+        type_annotation=None,
+        description=description,
+        is_subscription=is_subscription,
+        permission_classes=permission_classes or [],
+        deprecation_reason=deprecation_reason,
+        default=default,
+        default_factory=default_factory,
+        metadata=metadata,
+        directives=directives,
+        filters=filters,
+        handle_django_errors=handle_django_errors,
+    )
+
+
+def id_delete_mutation(
+    input_type: Type[IDInput] = IDInput,
+    *,
+    name: Optional[str] = None,
+    field_name: Optional[str] = None,
+    filters: Any = UNSET,
+    is_subscription: bool = False,
+    description: Optional[str] = None,
+    init: Literal[True] = True,
+    permission_classes: Optional[List[Type[BasePermission]]] = None,
+    deprecation_reason: Optional[str] = None,
+    default: Any = dataclasses.MISSING,
+    default_factory: Union[Callable[..., object], object] = dataclasses.MISSING,
+    metadata: Optional[Mapping[Any, Any]] = None,
+    directives: Optional[Sequence[object]] = (),
+    handle_django_errors: bool = True,
+) -> Any:
+    return DjangoDeleteMutationField(
+        input_type=input_type,
+        python_name=None,
+        django_name=field_name,
+        graphql_name=name,
+        type_annotation=None,
+        description=description,
+        is_subscription=is_subscription,
+        permission_classes=permission_classes or [],
+        deprecation_reason=deprecation_reason,
+        default=default,
+        default_factory=default_factory,
+        metadata=metadata,
+        directives=directives,
+        filters=filters,
+        handle_django_errors=handle_django_errors,
+    )
+
+
+def uuid_update_mutation(
     input_type: Type[UUIDInput],
     *,
     name: Optional[str] = None,
@@ -119,7 +216,7 @@ class UUIDUpdateMutationField(DjangoUpdateMutationField):
             DjangoOptimizerExtension.enabled.reset(token)
 
 
-def delete_mutation(
+def uuid_delete_mutation(
     input_type: Type[UUIDInput] = UUIDInput,
     *,
     name: Optional[str] = None,

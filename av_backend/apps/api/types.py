@@ -8,7 +8,7 @@ from django.contrib.auth.models import AbstractUser
 
 from strawberry_django_plus import gql
 
-from apps.api.base import UUIDInput
+from apps.api.base import IDInput
 from apps.people.models import Person, TeamSection
 
 UserModel = cast(Type[AbstractUser], get_user_model())
@@ -21,7 +21,7 @@ class InfoType:
 
 @gql.django.type(UserModel)
 class UserType:
-    # uuid: gql.auto
+    id: gql.auto
     username: gql.auto
     email: gql.auto
     is_active: gql.auto
@@ -30,8 +30,8 @@ class UserType:
     first_name: gql.auto
     last_name: gql.auto
 
-    # TODO: uuid?
-    id_attr = "username"
+    # TODO: what is this used for?
+    # id_attr = "username"
 
     @gql.django.field(only=["first_name", "last_name"])
     def full_name(self, root: AbstractUser) -> str:
@@ -65,7 +65,7 @@ class TeamSectionType:
 class PersonOrder:
     code: gql.auto
     name: gql.auto
-    # team_section: Optional[TeamSectionOrder]
+
     sections: Optional[TeamSectionOrder]
 
 
@@ -82,7 +82,8 @@ class PersonFilter:
 
 @gql.django.type(Person, order=PersonOrder, filters=PersonFilter)
 class PersonType:
-    uuid: UUID
+    id: gql.auto
+    # uuid: UUID
     code: gql.auto
     name: gql.auto
     e_mail: gql.auto
@@ -98,16 +99,16 @@ class PersonType:
     # id_attr = "uuid"
 
 
+# TODO: rename to PersonCreate
 @gql.django.input(Person)
 class PersonInput:
     code: gql.auto
     name: gql.auto
 
 
+# TODO: rename to PersonUpdate
 @gql.django.partial(Person)
-# class PersonInputPartial(gql.NodeInputPartial, PersonInput):
-# class PersonInputPartial(gql.NodeInput, PersonInput):
-class PersonInputPartial(UUIDInput, PersonInput):
-    code: gql.auto
-    name: gql.auto
+class PersonInputPartial(IDInput, PersonInput):
+    # code: gql.auto
+    # name: gql.auto
     phone: gql.auto

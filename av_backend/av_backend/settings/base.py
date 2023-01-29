@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     "wagtailmenus",
     # Third-party apps
     "django_extensions",
+    "strawberry.django",
+    "strawberry_django_plus",
     "strawberry_django_jwt.refresh_token",
     # Django apps
     "django.contrib.admin",
